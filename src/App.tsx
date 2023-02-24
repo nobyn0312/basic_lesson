@@ -1,15 +1,18 @@
 import React, {useState,useEffect, ChangeEvent} from 'react';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import CleanUp from './CleanUp';
 
 const App:React.FC =()=> {
   const[status,setStatus] =useState<string | number>("text");
 
   const [input, setInput] =useState('');
   const [counter,setCounter] =useState(0);
+  const [display,setDisplay] =useState(true);
   const onChangeHandler =(e:React.ChangeEvent<HTMLInputElement>)=>{
     setInput(e.target.value)
   }
+
 
   useEffect(()=>{
     console.log('useEffect');
@@ -23,6 +26,10 @@ const App:React.FC =()=> {
       <h4>{status}</h4>
       <button onClick ={()=> setStatus('new txt')}
       >Button</button>
+
+      {display && <CleanUp/>}
+      <button onClick={()=>setDisplay(!display)}>ToggleDisplay</button>
+
      <h4>{input}</h4>
      <h4>{counter}</h4>
 
